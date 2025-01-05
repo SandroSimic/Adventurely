@@ -4,7 +4,7 @@ dotenv.config();
 import connectDB from "./utils/db.js";
 import cors from "cors";
 import cookieParser from "cookie-parser";
-
+import userRoutes from "./routes/userRoutes.js";
 connectDB();
 
 const app = express();
@@ -20,9 +20,10 @@ app.use(
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.get("/api/server", (req, res) => {
-  res.send("Hello server");
-});
+app.use("/api/users", userRoutes);
+// app.get("/api/server", (req, res) => {
+//   res.send("Hello server");
+// });
 
 const port = process.env.PORT || 8000;
 
